@@ -21,7 +21,7 @@ window.onbeforeunload = function()
 return " Do you want to leave ?";
 }
 </script>
-<p> site is vulnerable for Clickjacking !</p>
+<p> site is vulnerable for Clickjacking ! </p>
 <iframe id="frame" width="100%" height="100%" src="https://www.$dom"></iframe>
 </body>
 </html>
