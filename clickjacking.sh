@@ -28,22 +28,12 @@ return " Do you want to leave ?";
 " > clickjacking_poc.html
 read -p "Do you want to save the PoC ?(Y/N)[Enter = NO] : " save
 case $save in
-	N )
+	[nN][oO]|[nN] )
 	firefox clickjacking_poc.html
 	sleep 5
 	rm clickjacking_poc.html
 	;;
-	NO )
-	firefox clickjacking_poc.html
-	sleep 2
-	rm clickjacking_poc.html
-	;;
-	Y )
-	echo "saved as clickjacking_poc.html at $PWD"
-	sleep 2 
-	firefox clickjacking_poc.html
-	;;
-	YES )
+	[yY][eE][sS]|[yY] )
 	echo "saved as clickjacking_poc.html at $PWD" 
 	sleep 2
 	firefox clickjacking_poc.html
