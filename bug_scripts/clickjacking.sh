@@ -1,8 +1,8 @@
 #! /bin/bash
-read -p "Enter domain : " dom
-echo "<html>
+read -p "Enter domain (eg: test.com) : " dom
+echo " <html>
 <head>
-<title> Clickjacking </title>
+<title>clickjacking_poc for $dom </title>
 <style>
 frame {
 opacity: 0.5;
@@ -22,36 +22,36 @@ return " Do you want to leave ?";
 }
 </script>
 <p> site is vulnerable for Clickjacking !</p>
-<iframe id="frame" width="100%" height="100%" src="$dom"></iframe>
+<iframe id="frame" width="100%" height="100%" src="https://www.$dom"></iframe>
 </body>
 </html>
-" > clickjacking.html
-read -p "Do you want to save the PoC ? (Y/N) : " save
+" > clickjacking_poc.html
+read -p "Do you want to save the PoC ?(Y/N)[Enter = NO] : " save
 case $save in
 	N )
-	firefox clickjacking.html
+	firefox clickjacking_poc.html
 	sleep 5
-	rm clickjacking.html
+	rm clickjacking_poc.html
 	;;
 	NO )
-	firefox clickjacking.html
-	sleep 5
-	rm clickjacking.html
+	firefox clickjacking_poc.html
+	sleep 2
+	rm clickjacking_poc.html
 	;;
 	Y )
-	echo "saved as clickjacking.html at $PWD"
+	echo "saved as clickjacking_poc.html at $PWD"
 	sleep 2 
-	firefox clickjacking.html
+	firefox clickjacking_poc.html
 	;;
 	YES )
-	echo "saved as clickjacking.html at $PWD" 
+	echo "saved as clickjacking_poc.html at $PWD" 
 	sleep 2
-	firefox clickjacking.html
+	firefox clickjacking_poc.html
 	;;
 	*)
 	echo "PoC not saved"
-	firefox clickjacking.html
-	sleep 5
-	rm clickjacking.html
+	firefox clickjacking_poc.html
+	sleep 2
+	rm clickjacking_poc.html
 
 esac
