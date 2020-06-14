@@ -10,16 +10,22 @@ sp=$(echo -e ${bold}"\u0020")
 smile=$(echo -e ${bold}"\U1F60E")
 
 cname_check(){
-sub_count=$(cat subdomains.txt | wc -l)
+sub_count=$(cat $file | wc -l)
 echo "TOTAL SUBDOMAINS : ${sub_count}"
 echo "Collecting CNAME of the subdomains ${smile}"
 	while read line
 do
     name=$line
-    cname=$(dig $line CNAME +short)
+    if [[ "$line" = *http://* || "$line" = *https://* ]]; then
+    	nohttp=$(echo "$line" | sed 's~http[s]*://~~g')	
+    	cname=$(dig ${nohttp} CNAME +short)
+    else
+    	cname=$(dig $line CNAME +short)
+    fi
+   
 
     if [[ -z "$cname" ]]; then
-    	echo -e CNAME of ${bold}${red}$line${reset} NOT FOUND
+    	echo -e CNAME of ${bold}${red}$line	${reset} NOT FOUND
     else
     	echo -e ${bold}${green}$line${reset} ${arrow} ${sp} ${bold}${blue}$cname${reset}
     	echo ${cname} >> cnames.txt
