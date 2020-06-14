@@ -8,6 +8,7 @@ bold=`tput bold`
 arrow=$(echo -e ${bold}"\u27F6")
 sp=$(echo -e ${bold}"\u0020")
 smile=$(echo -e ${bold}"\U1F60E")
+thumbs=$(echo -e ${bold}"\U1F44D")
 
 cname_check(){
 sub_count=$(cat $file | wc -l)
@@ -34,6 +35,7 @@ do
     
 done < $file
 }
+logo
 if [[ -z "$file" ]]; then
 	echo "INVALID SYNTAX. usage: ./gathercname file.txt"
 else
@@ -53,3 +55,4 @@ case $save in
 	echo "NOT SAVED"
 esac
 fi
+echo "Script execution completed ${thumbs}"
