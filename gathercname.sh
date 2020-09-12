@@ -1,4 +1,5 @@
 #! /bin/bash
+#Author : Sarath G
 file=$1
 red=`tput setaf 1`
 green=`tput setaf 2`
